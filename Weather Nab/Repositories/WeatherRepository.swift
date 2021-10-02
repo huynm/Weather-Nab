@@ -9,6 +9,10 @@ import Alamofire
 import Foundation
 import RxSwift
 
+enum ForecastType {
+    case daily
+}
+
 enum ForecastError: Error {
     case cityNotFound
     case unknown
@@ -22,8 +26,6 @@ struct ForecastParams {
 }
 
 protocol WeatherRepository {
-    /**
-     Will emit ``ForecastError`` on error
-     */
-    func forecast(with params: ForecastParams) -> Observable<[Weather]>
+    /// Will emit ``ForecastError`` on error
+    func dailyForecastReport(with params: ForecastParams) -> Observable<DailyForecastReport>
 }

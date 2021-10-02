@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum AppRoute {
-    case weather
+    case dailyForecast
 }
 
 class SceneCoordinator: Coordinator {
@@ -25,9 +25,11 @@ class SceneCoordinator: Coordinator {
     
     func trigger(_ route: Route) {
         switch route {
-        case .weather:
-            let weatherViewModel = WeatherViewModel(repository: environment.weatherRepository)
-            window?.rootViewController = WeatherViewController(viewModel: weatherViewModel)
+        case .dailyForecast:
+            let weatherViewModel = DailyForecastViewModel(repository: environment.weatherRepository)
+            let weatherViewController = DailyForecastViewController(viewModel: weatherViewModel)
+            let weatherNavigationController = UINavigationController(rootViewController: weatherViewController)
+            window?.rootViewController = weatherNavigationController
             window?.makeKeyAndVisible()
         }
     }

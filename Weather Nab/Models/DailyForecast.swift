@@ -1,15 +1,11 @@
 //
 //  Forecast.swift
-//  Weather Nab
+//  DailyForecast Nab
 //
 //  Created by Huy Nguyen on 10/2/21.
 //
 
 import Foundation
-
-enum ForecastType {
-    case daily
-}
 
 enum MeasurementUnit {
     case standard
@@ -17,11 +13,16 @@ enum MeasurementUnit {
     case imperial
 }
 
-struct Weather {
+struct DailyForecast {
     let date: Date
     let avgTemperature: Float
     let measurementUnit: MeasurementUnit
     let pressure: Int
     let humidity: Int
     let description: String
+}
+
+struct DailyForecastReport {
+    let city: String
+    let forecasts: [DailyForecast]
 }

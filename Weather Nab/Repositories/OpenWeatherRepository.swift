@@ -30,7 +30,7 @@ class OpenWeatherRepository: WeatherRepository {
         }
     }
     
-    func forecast(with params: ForecastParams) -> Observable<[Weather]> {
+    func dailyForecastReport(with params: ForecastParams) -> Observable<DailyForecastReport> {
         let url = buildForecastURL(with: params)
         let session = session
         let request = session.request(url)
@@ -46,6 +46,7 @@ class OpenWeatherRepository: WeatherRepository {
                             params: params
                         )
                         observer.onNext(weather)
+                        observer.onCompleted()
                     } catch {
                         observer.onError(error)
                     }
@@ -64,7 +65,7 @@ class OpenWeatherRepository: WeatherRepository {
         _ data: Data,
         statusCode: Int?,
         params: ForecastParams
-    ) throws -> [Weather] {
+    ) throws -> DailyForecastReport {
         guard let statusCode = statusCode else {
             throw ForecastError.unknown
         }
@@ -81,9 +82,9 @@ class OpenWeatherRepository: WeatherRepository {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
         
-        let response = try decoder.decode(ForecastResponse.self, from: data)
-        return response.list.map {
-            Weather(
+        let response = try decoder.decode(DailyForecastResponse.self, from: data)
+        let forecasts = response.list.map {
+            DailyForecast(
                 date: $0.dt,
                 avgTemperature: ($0.temp.max + $0.temp.min) / 2,
                 measurementUnit: params.measurementUnit,
@@ -92,6 +93,8 @@ class OpenWeatherRepository: WeatherRepository {
                 description: $0.weather.first?.description ?? ""
             )
         }
+        
+        return DailyForecastReport(city: response.city.name, forecasts: forecasts)
     }
     
     private func buildForecastURL(with params: ForecastParams) -> URL {
@@ -130,23 +133,29 @@ class OpenWeatherRepository: WeatherRepository {
     }
 }
 
-private struct ForecastResponse: Decodable {
-    let list: [Forecast]
+private struct DailyForecastResponse: Decodable {
+    let list: [RawDailyForecast]
+    let city: DailyForecastCity
 }
 
-private struct ForecastTemperature: Decodable {
+private struct DailyForecastCity: Decodable {
+    let name: String
+}
+
+private struct DailyForecastTemperature: Decodable {
     let min: Float
     let max: Float
 }
 
-private struct ForecastWeather: Decodable {
+private struct DailyForecastWeather: Decodable {
     let description: String
 }
 
-private struct Forecast: Decodable {
+// The Raw prefix is to prevent naming conflict with DailyForecast
+private struct RawDailyForecast: Decodable {
     let dt: Date
-    let temp: ForecastTemperature
+    let temp: DailyForecastTemperature
     let pressure: Int
     let humidity: Int
-    let weather: [ForecastWeather]
+    let weather: [DailyForecastWeather]
 }
