@@ -8,6 +8,8 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    private var coordinator: SceneCoordinator?
+    
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -15,8 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        window = UIWindow(windowScene: scene)
-        window?.rootViewController = WeatherViewController()
-        window?.makeKeyAndVisible()
+        let window = UIWindow(windowScene: scene)
+        let coordinator = SceneCoordinator(window: window, environment: .current)
+        coordinator.trigger(.weather)
+        self.window = window
+        self.coordinator = coordinator
     }
 }
