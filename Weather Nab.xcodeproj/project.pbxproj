@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		00C4A14E2707ED18007EE422 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A14D2707ED18007EE422 /* AppDelegate.swift */; };
 		00C4A1502707ED18007EE422 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A14F2707ED18007EE422 /* SceneDelegate.swift */; };
-		00C4A1522707ED18007EE422 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A1512707ED18007EE422 /* ViewController.swift */; };
+		00C4A1522707ED18007EE422 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A1512707ED18007EE422 /* WeatherViewController.swift */; };
 		00C4A1572707ED19007EE422 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C4A1562707ED19007EE422 /* Assets.xcassets */; };
 		00C4A15A2707ED19007EE422 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C4A1582707ED19007EE422 /* LaunchScreen.storyboard */; };
 		00C4A1652707ED1A007EE422 /* Weather_NabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A1642707ED1A007EE422 /* Weather_NabTests.swift */; };
 		00C4A16F2707ED1A007EE422 /* Weather_NabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A16E2707ED1A007EE422 /* Weather_NabUITests.swift */; };
 		00C4A1712707ED1A007EE422 /* Weather_NabUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A1702707ED1A007EE422 /* Weather_NabUITestsLaunchTests.swift */; };
+		00C4A1922707F352007EE422 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 00C4A1912707F352007EE422 /* RxCocoa */; };
+		00C4A1942707F352007EE422 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 00C4A1932707F352007EE422 /* RxRelay */; };
+		00C4A1962707F352007EE422 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00C4A1952707F352007EE422 /* RxSwift */; };
+		00C4A19B2707F440007EE422 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 00C4A19A2707F440007EE422 /* Alamofire */; };
+		00C4A19E2707F450007EE422 /* EasyPeasy in Frameworks */ = {isa = PBXBuildFile; productRef = 00C4A19D2707F450007EE422 /* EasyPeasy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +43,7 @@
 		00C4A14A2707ED18007EE422 /* Weather Nab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Nab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C4A14D2707ED18007EE422 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C4A14F2707ED18007EE422 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		00C4A1512707ED18007EE422 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		00C4A1512707ED18007EE422 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		00C4A1562707ED19007EE422 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00C4A1592707ED19007EE422 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00C4A15B2707ED19007EE422 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +59,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00C4A19E2707F450007EE422 /* EasyPeasy in Frameworks */,
+				00C4A1942707F352007EE422 /* RxRelay in Frameworks */,
+				00C4A19B2707F440007EE422 /* Alamofire in Frameworks */,
+				00C4A1922707F352007EE422 /* RxCocoa in Frameworks */,
+				00C4A1962707F352007EE422 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +91,7 @@
 				00C4A1632707ED1A007EE422 /* Weather NabTests */,
 				00C4A16D2707ED1A007EE422 /* Weather NabUITests */,
 				00C4A14B2707ED18007EE422 /* Products */,
+				00C4A18E2707F352007EE422 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,7 +110,7 @@
 			children = (
 				00C4A14D2707ED18007EE422 /* AppDelegate.swift */,
 				00C4A14F2707ED18007EE422 /* SceneDelegate.swift */,
-				00C4A1512707ED18007EE422 /* ViewController.swift */,
+				00C4A1512707ED18007EE422 /* WeatherViewController.swift */,
 				00C4A1562707ED19007EE422 /* Assets.xcassets */,
 				00C4A1582707ED19007EE422 /* LaunchScreen.storyboard */,
 				00C4A15B2707ED19007EE422 /* Info.plist */,
@@ -124,6 +135,13 @@
 			path = "Weather NabUITests";
 			sourceTree = "<group>";
 		};
+		00C4A18E2707F352007EE422 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,6 +158,13 @@
 			dependencies = (
 			);
 			name = "Weather Nab";
+			packageProductDependencies = (
+				00C4A1912707F352007EE422 /* RxCocoa */,
+				00C4A1932707F352007EE422 /* RxRelay */,
+				00C4A1952707F352007EE422 /* RxSwift */,
+				00C4A19A2707F440007EE422 /* Alamofire */,
+				00C4A19D2707F450007EE422 /* EasyPeasy */,
+			);
 			productName = "Weather Nab";
 			productReference = 00C4A14A2707ED18007EE422 /* Weather Nab.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +237,11 @@
 				Base,
 			);
 			mainGroup = 00C4A1412707ED18007EE422;
+			packageReferences = (
+				00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				00C4A1992707F440007EE422 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				00C4A19C2707F44F007EE422 /* XCRemoteSwiftPackageReference "EasyPeasy" */,
+			);
 			productRefGroup = 00C4A14B2707ED18007EE422 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -254,7 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C4A1522707ED18007EE422 /* ViewController.swift in Sources */,
+				00C4A1522707ED18007EE422 /* WeatherViewController.swift in Sources */,
 				00C4A14E2707ED18007EE422 /* AppDelegate.swift in Sources */,
 				00C4A1502707ED18007EE422 /* SceneDelegate.swift in Sources */,
 			);
@@ -612,6 +642,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+		00C4A1992707F440007EE422 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+		00C4A19C2707F44F007EE422 /* XCRemoteSwiftPackageReference "EasyPeasy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nakiostudio/EasyPeasy";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00C4A1912707F352007EE422 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		00C4A1932707F352007EE422 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		00C4A1952707F352007EE422 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		00C4A19A2707F440007EE422 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00C4A1992707F440007EE422 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		00C4A19D2707F450007EE422 /* EasyPeasy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00C4A19C2707F44F007EE422 /* XCRemoteSwiftPackageReference "EasyPeasy" */;
+			productName = EasyPeasy;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 00C4A1422707ED18007EE422 /* Project object */;
 }
