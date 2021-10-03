@@ -55,7 +55,7 @@ class DailyForecastViewModel:
         
         let fetchForecastsTrigger = Observable.merge(
             viewDidLoadRelay.map { initialQuery },
-            queryDidChangeRelay.asObservable()
+            didSubmitQueryRelay.asObservable()
         )
         let forecasts = fetchForecastsTrigger
             .filter { ($0?.trimmed.count ?? 0) >= minimumQueryLength }
@@ -98,8 +98,8 @@ class DailyForecastViewModel:
         
         self.initialQuery = Observable.just(initialQuery)
         
-        self.showAlert = queryDidChangeRelay.compactMap {
-            if let query = $0, query.count < minimumQueryLength {
+        self.showAlert = didSubmitQueryRelay.compactMap {
+            if ($0?.count ?? 0) < minimumQueryLength {
                 return .minimumQueryLength(minimumQueryLength)
             }
             return nil
@@ -111,8 +111,8 @@ class DailyForecastViewModel:
         viewDidLoadRelay.accept(())
     }
     
-    private let queryDidChangeRelay = PublishRelay<String?>()
+    private let didSubmitQueryRelay = PublishRelay<String?>()
     func didSubmitQuery(_ query: String?) {
-        queryDidChangeRelay.accept(query)
+        didSubmitQueryRelay.accept(query)
     }
 }

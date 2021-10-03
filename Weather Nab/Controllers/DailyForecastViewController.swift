@@ -37,7 +37,7 @@ class DailyForecastViewController: UIViewController {
     }
     
     private func setupView() {
-        title = "Weather Forecast"
+        title = NSLocalizedString("dailyForecast.screenTitle", comment: "")
         view.backgroundColor = .systemBackground
         
         let appearance = UINavigationBarAppearance()
@@ -77,8 +77,11 @@ class DailyForecastViewController: UIViewController {
                 let message: String
                 switch $0 {
                 case let .minimumQueryLength(length):
-                    title = "Notice"
-                    message = "Search term must be \(length) or more characters"
+                    title = NSLocalizedString("alert.minimumQueryLength.title", comment: "")
+                    message = String.localizedStringWithFormat(
+                        NSLocalizedString("alert.minimumQueryLength.message", comment: ""),
+                        length
+                    )
                 }
                 
                 let alertController = UIAlertController(
@@ -86,7 +89,12 @@ class DailyForecastViewController: UIViewController {
                     message: message,
                     preferredStyle: .alert
                 )
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                let okAction = UIAlertAction(
+                    title: NSLocalizedString("button.ok", comment: ""),
+                    style: .cancel,
+                    handler: nil
+                )
+                alertController.addAction(okAction)
                 self?.present(alertController, animated: true, completion: nil)
             }
             .disposed(by: disposeBag)
@@ -145,26 +153,26 @@ extension DailyForecastViewController: UITableViewDataSource {
         let percentageFormatter = NumberFormatter.percentageFormatter
         
         cell.containedView.dateLabel.text = format(
-            title: "Date",
+            title: NSLocalizedString("dailyForecast.dateTitle", comment: ""),
             value: dateFormatter.string(from: forecast.date)
         )
         cell.containedView.avgTemperatureLabel.text = format(
-            title: "Average Temperature",
+            title: NSLocalizedString("dailyForecast.avgTemperatureTitle", comment: ""),
             value: degreeFormatter.string(
                 from: forecast.avgTemperature,
                 measurementUnit: forecast.measurementUnit
             )
         )
         cell.containedView.humidityLabel.text = format(
-            title: "Humidity",
+            title: NSLocalizedString("dailyForecast.humidityTitle", comment: ""),
             value: percentageFormatter.string(from: NSNumber(value: forecast.humidity))
         )
         cell.containedView.pressureLabel.text = format(
-            title: "Pressure",
+            title: NSLocalizedString("dailyForecast.pressureTitle", comment: ""),
             value: "\(forecast.pressure)"
         )
         cell.containedView.descriptionLabel.text = format(
-            title: "Description",
+            title: NSLocalizedString("dailyForecast.descriptionTitle", comment: ""),
             value: forecast.description
         )
         return cell

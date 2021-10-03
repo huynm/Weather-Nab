@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  Weather Nab
+
+  Created by Huy Nguyen on 10/3/21.
+*/
+
+"dailyForecast.screenTitle" = "Weather Forecast";
+"alert.minimumQueryLength.title" = "Notice";
+"alert.minimumQueryLength.message" = "Search term must be %d or more characters";
+"button.ok" = "OK";
+"dailyForecast.dateTitle" = "Date";
+"dailyForecast.avgTemperatureTitle" = "Average Temperature";
+"dailyForecast.humidityTitle" = "Humidity";
+"dailyForecast.pressureTitle" = "Pressure";
+"dailyForecast.descriptionTitle" = "Description";
