@@ -108,12 +108,8 @@ class OpenWeatherRepository: WeatherRepository {
         
         let measurementUnit: String
         switch params.measurementUnit {
-        case .imperial:
-            measurementUnit = "imperial"
         case .metric:
             measurementUnit = "metric"
-        case .standard:
-            measurementUnit = "standard"
         }
         
         urlComponents.queryItems = [
@@ -143,8 +139,8 @@ private struct DailyForecastCity: Decodable {
 }
 
 private struct DailyForecastTemperature: Decodable {
-    let min: Float
-    let max: Float
+    let min: Double
+    let max: Double
 }
 
 private struct DailyForecastWeather: Decodable {

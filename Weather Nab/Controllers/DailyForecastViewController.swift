@@ -38,7 +38,8 @@ class DailyForecastViewController: UIViewController {
     
     private func setupView() {
         title = "Weather Forecast"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
+        navigationItem.prompt = "Search term must be 3 or more characters"
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
@@ -114,10 +115,43 @@ extension DailyForecastViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "\(forecastReport.forecasts[indexPath.row].avgTemperature.rounded())"
-        cell.detailTextLabel?.text = forecastReport.forecasts[indexPath.row].description
+        let cellIdentifier = "ForecastCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? ContainerTableViewCell<ForecastView>
+            ?? ContainerTableViewCell<ForecastView>(reuseIdentifier: cellIdentifier)
+        
+        let forecast = forecastReport.forecasts[indexPath.row]
+        let dateFormatter = DateFormatter.default
+        let degreeFormatter = MeasurementFormatter.default
+        let percentageFormatter = NumberFormatter.percentageFormatter
+        
+        cell.containedView.dateLabel.text = format(
+            title: "Date",
+            value: dateFormatter.string(from: forecast.date)
+        )
+        cell.containedView.avgTemperatureLabel.text = format(
+            title: "Average Temperature",
+            value: degreeFormatter.string(
+                from: forecast.avgTemperature,
+                measurementUnit: forecast.measurementUnit
+            )
+        )
+        cell.containedView.humidityLabel.text = format(
+            title: "Humidity",
+            value: percentageFormatter.string(from: NSNumber(value: forecast.humidity))
+        )
+        cell.containedView.pressureLabel.text = format(
+            title: "Pressure",
+            value: "\(forecast.pressure)"
+        )
+        cell.containedView.descriptionLabel.text = format(
+            title: "Description",
+            value: forecast.description
+        )
         return cell
+    }
+    
+    private func format(title: String, value: String?) -> String {
+        return "\(title): \(value ?? "")"
     }
 }
 

@@ -44,6 +44,7 @@ class DailyForecastViewModel:
     
     init(repository: WeatherRepository) {
         let initialQuery = "Saigon"
+        let minimumQueryLength = 3
         let isLoading = BehaviorRelay(value: true)
         
         let fetchForecastsTrigger = Observable.merge(
@@ -51,7 +52,7 @@ class DailyForecastViewModel:
             queryDidChangeRelay.asObservable()
         )
         let forecasts = fetchForecastsTrigger
-            .filter { $0?.trimmed.isEmpty == false }
+            .filter { ($0?.trimmed.count ?? 0) >= minimumQueryLength }
             .compactMap { $0 }
             .flatMapLatest { query -> Observable<Event<DailyForecastReport>> in
                 let params = ForecastParams(

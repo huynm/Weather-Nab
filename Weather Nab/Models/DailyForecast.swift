@@ -8,14 +8,12 @@
 import Foundation
 
 enum MeasurementUnit {
-    case standard
     case metric
-    case imperial
 }
 
 struct DailyForecast {
     let date: Date
-    let avgTemperature: Float
+    let avgTemperature: Double
     let measurementUnit: MeasurementUnit
     let pressure: Int
     let humidity: Int
