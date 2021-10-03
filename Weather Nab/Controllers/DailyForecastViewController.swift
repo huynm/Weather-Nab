@@ -39,7 +39,6 @@ class DailyForecastViewController: UIViewController {
     private func setupView() {
         title = "Weather Forecast"
         view.backgroundColor = .systemBackground
-        navigationItem.prompt = "Search term must be 3 or more characters"
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
@@ -69,6 +68,27 @@ class DailyForecastViewController: UIViewController {
         viewModel.outputs.initialQuery
             .observe(on: MainScheduler.instance)
             .bind { [weak self] in self?.searchController.searchBar.text = $0 }
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.showAlert
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] in
+                let title: String
+                let message: String
+                switch $0 {
+                case let .minimumQueryLength(length):
+                    title = "Notice"
+                    message = "Search term must be \(length) or more characters"
+                }
+                
+                let alertController = UIAlertController(
+                    title: title,
+                    message: message,
+                    preferredStyle: .alert
+                )
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self?.present(alertController, animated: true, completion: nil)
+            }
             .disposed(by: disposeBag)
         
         Observable.combineLatest(
@@ -101,7 +121,7 @@ class DailyForecastViewController: UIViewController {
 
 extension DailyForecastViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.inputs.queryDidChange(searchBar.text)
+        viewModel.inputs.didSubmitQuery(searchBar.text)
     }
 }
 

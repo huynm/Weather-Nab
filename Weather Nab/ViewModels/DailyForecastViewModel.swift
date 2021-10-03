@@ -11,18 +11,23 @@ import RxRelay
 
 protocol DailyForecastViewModelInputs {
     func viewDidLoad()
-    func queryDidChange(_ query: String?)
+    func didSubmitQuery(_ query: String?)
 }
 
 protocol DailyForecastViewModelOutputs {
     var viewState: Observable<DailyForecastViewState> { get }
     var isLoading: Observable<Bool> { get }
     var initialQuery: Observable<String> { get }
+    var showAlert: Observable<DailyForecastAlert> { get }
 }
 
 protocol DailyForecastViewModelProtocol {
     var inputs: DailyForecastViewModelInputs { get }
     var outputs: DailyForecastViewModelOutputs { get }
+}
+
+enum DailyForecastAlert {
+    case minimumQueryLength(Int)
 }
 
 enum DailyForecastViewState {
@@ -41,6 +46,7 @@ class DailyForecastViewModel:
     let isLoading: Observable<Bool>
     let viewState: Observable<DailyForecastViewState>
     let initialQuery: Observable<String>
+    let showAlert: Observable<DailyForecastAlert>
     
     init(repository: WeatherRepository) {
         let initialQuery = "Saigon"
@@ -91,6 +97,13 @@ class DailyForecastViewModel:
             .compactMap { $0 }
         
         self.initialQuery = Observable.just(initialQuery)
+        
+        self.showAlert = queryDidChangeRelay.compactMap {
+            if let query = $0, query.count < minimumQueryLength {
+                return .minimumQueryLength(minimumQueryLength)
+            }
+            return nil
+        }
     }
     
     private let viewDidLoadRelay = PublishRelay<Void>()
@@ -99,7 +112,7 @@ class DailyForecastViewModel:
     }
     
     private let queryDidChangeRelay = PublishRelay<String?>()
-    func queryDidChange(_ query: String?) {
+    func didSubmitQuery(_ query: String?) {
         queryDidChangeRelay.accept(query)
     }
 }
