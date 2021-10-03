@@ -70,17 +70,19 @@ class DailyForecastViewModel:
         let minimumQueryLength = 3
         let isLoading = BehaviorRelay(value: false)
         
-        let fetchForecastsTrigger = Observable.merge(
+        let fetchForecastTrigger = Observable.merge(
             viewDidLoadRelay.map { initialQuery },
             didSubmitQueryRelay.asObservable()
         )
-        let forecasts = fetchForecastsTrigger
-            .filter { ($0?.trimmed.count ?? 0) >= minimumQueryLength }
-            .compactMap { $0 }
-            .flatMapLatest { query -> Observable<Event<DailyForecastReport>> in
+        let forecasts = fetchForecastTrigger
+            .filter {
+                ($0?.trimmed.count ?? 0) >= minimumQueryLength
+            }.compactMap {
+                $0
+            }.flatMapLatest { query -> Observable<Event<DailyForecastReport>> in
                 let params = ForecastParams(
                     forecaseType: .daily,
-                    query: query,
+                    query: query.trimmed,
                     numberOfDays: 7,
                     measurementUnit: .metric
                 )
@@ -95,9 +97,8 @@ class DailyForecastViewModel:
                     })
                     .materialize()
             }
-            .share()
         
-        self.isLoading = isLoading.asObservable()
+        self.isLoading = isLoading.distinctUntilChanged()
         
         self.viewState = forecasts
             .map { event in
@@ -114,15 +115,17 @@ class DailyForecastViewModel:
                 }
             }
             .compactMap { $0 }
+            .distinctUntilChanged()
         
-        self.initialQuery = Observable.just(initialQuery)
+        self.initialQuery = .just(initialQuery)
         
-        self.showAlert = didSubmitQueryRelay.compactMap {
-            if ($0?.count ?? 0) < minimumQueryLength {
-                return .minimumQueryLength(minimumQueryLength)
+        self.showAlert = didSubmitQueryRelay
+            .compactMap {
+                if ($0?.count ?? 0) < minimumQueryLength {
+                    return .minimumQueryLength(minimumQueryLength)
+                }
+                return nil
             }
-            return nil
-        }
     }
     
     private let viewDidLoadRelay = PublishRelay<Void>()

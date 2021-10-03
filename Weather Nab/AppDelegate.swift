@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         let weatherRepository = OpenWeatherRepository(appId: "60c6fbeb4b93ac653c492ba806fc346d")
-        let environment = AppEnvironment(weatherRepository: weatherRepository)
+        let environment = AppEnvironment(weatherRepository: MockWeatherRepository())
         AppEnvironment.setEnvironment(environment)
         
         return true

@@ -8,35 +8,30 @@
 import XCTest
 
 class Weather_NabUITests: XCTestCase {
-
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testExample() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        
+        let table = app.tables[AccessibilityIdentifier.dailyForecastTableView]
+        let spinner = app.activityIndicators[AccessibilityIdentifier.dailyForecastSpinner]
+        let searchBar = app.searchFields.firstMatch
+        
+        // Search field showing initial query
+        XCTAssertEqual(searchBar.value as? String, "Saigon")
+        // Show loading state
+        XCTAssertTrue(spinner.exists)
+        
+        // Show forecast
+        XCTAssertTrue(table.waitForExistence(timeout: 5))
+        XCTAssertEqual(table.children(matching: .cell).count, 10)
+        
+        let dateLabel = table.children(matching: .cell).allElementsBoundByIndex[0].staticTexts[AccessibilityIdentifier.dailyForecastDateLabel]
+        XCTAssertEqual(table.children(matching: .cell).count, 10)
+        XCTAssertEqual(dateLabel.label, "Date: Sun, 03 Oct 2021")
+        XCTAssertFalse(spinner.exists)
     }
 }

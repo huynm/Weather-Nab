@@ -50,8 +50,10 @@ class DailyForecastViewController: UIViewController {
         searchController.searchBar.delegate = self
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
+        searchController.searchBar.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastSearchBar
         
         tableView.isHidden = true
+        tableView.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastTableView
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
@@ -70,6 +72,7 @@ class DailyForecastViewController: UIViewController {
         )
         
         spinnerView.isHidden = true
+        spinnerView.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastSpinner
         spinnerView.startAnimating()
         view.addSubview(spinnerView)
         spinnerView.easy.layout(Center())

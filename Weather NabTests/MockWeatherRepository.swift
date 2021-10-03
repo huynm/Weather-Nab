@@ -7,8 +7,8 @@
 
 import Foundation
 import RxSwift
-@testable import Weather_Nab
 import RxTest
+@testable import Weather_Nab
 
 class MockWeatherRepository: WeatherRepository {
     let scheduler: TestScheduler

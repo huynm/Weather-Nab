@@ -10,7 +10,7 @@ import RxTest
 import RxSwift
 @testable import Weather_Nab
 
-class Weather_NabTests: XCTestCase {
+class DailyForecastViewModelTests: XCTestCase {
     var viewModel: DailyForecastViewModel!
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
@@ -65,12 +65,15 @@ class Weather_NabTests: XCTestCase {
         
         scheduler.createColdObservable([
             .next(10, { self.viewModel.inputs.viewDidLoad() }),
-            .next(20, { self.viewModel.inputs.didSubmitQuery("qu") }),
-            .next(30, { self.viewModel.inputs.didSubmitQuery("que") }),
-            .next(40, { self.viewModel.inputs.didSubmitQuery(nil) }),
+            .next(20, { self.viewModel.inputs.didSubmitQuery("q") }),
+            .next(30, { self.viewModel.inputs.didSubmitQuery("qu") }),
+            .next(40, { self.viewModel.inputs.didSubmitQuery("que") }),
             .next(50, { self.viewModel.inputs.didSubmitQuery("query") }),
-            .next(60, { self.viewModel.inputs.didSubmitQuery("q") }),
-            .next(70, { self.viewModel.inputs.didSubmitQuery("unknown") })
+            .next(51, { self.viewModel.inputs.didSubmitQuery("query") }),
+            .next(60, { self.viewModel.inputs.didSubmitQuery("unknown") }),
+            .next(70, { self.viewModel.inputs.didSubmitQuery(nil) }),
+            .next(80, { self.viewModel.inputs.didSubmitQuery("    ") }),
+            .next(90, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
         ]).bind { $0() }.disposed(by: disposeBag)
         
         scheduler.start()
@@ -79,12 +82,14 @@ class Weather_NabTests: XCTestCase {
             .next(0, false),
             .next(10, true),
             .next(15, false),
-            .next(30, true),
-            .next(35, false),
+            .next(40, true),
+            .next(45, false),
             .next(50, true),
-            .next(55, false),
-            .next(70, true),
-            .next(75, false)
+            .next(56, false),
+            .next(60, true),
+            .next(65, false),
+            .next(90, true),
+            .next(95, false)
         ])
     }
     
@@ -109,21 +114,25 @@ class Weather_NabTests: XCTestCase {
         
         scheduler.createColdObservable([
             .next(10, { self.viewModel.inputs.viewDidLoad() }),
-            .next(20, { self.viewModel.inputs.didSubmitQuery("qu") }),
-            .next(30, { self.viewModel.inputs.didSubmitQuery("que") }),
-            .next(40, { self.viewModel.inputs.didSubmitQuery(nil) }),
+            .next(20, { self.viewModel.inputs.didSubmitQuery("q") }),
+            .next(30, { self.viewModel.inputs.didSubmitQuery("qu") }),
+            .next(40, { self.viewModel.inputs.didSubmitQuery("que") }),
             .next(50, { self.viewModel.inputs.didSubmitQuery("query") }),
-            .next(60, { self.viewModel.inputs.didSubmitQuery("q") }),
-            .next(70, { self.viewModel.inputs.didSubmitQuery("unknown") }),
+            .next(51, { self.viewModel.inputs.didSubmitQuery("query") }),
+            .next(60, { self.viewModel.inputs.didSubmitQuery("unknown") }),
+            .next(70, { self.viewModel.inputs.didSubmitQuery(nil) }),
+            .next(80, { self.viewModel.inputs.didSubmitQuery("    ") }),
+            .next(90, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
         ]).bind { $0() }.disposed(by: disposeBag)
         
         scheduler.start()
         
         XCTAssertEqual(viewState.events, [
             .next(15, .forecastReport(DailyForecastReport(city: "Saigon", forecasts: forecasts))),
-            .next(35, .error(.cityNotFound)),
-            .next(55, .forecastReport(DailyForecastReport(city: "query", forecasts: forecasts))),
-            .next(75, .error(.unknown))
+            .next(45, .error(.cityNotFound)),
+            .next(56, .forecastReport(DailyForecastReport(city: "query", forecasts: forecasts))),
+            .next(65, .error(.unknown)),
+            .next(95, .forecastReport(DailyForecastReport(city: "query", forecasts: forecasts))),
         ])
     }
     

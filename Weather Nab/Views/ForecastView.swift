@@ -28,6 +28,7 @@ class ForecastView: UIView {
     
     private func setup() {
         dateLabel.font = .preferredFont(forTextStyle: .body)
+        dateLabel.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastDateLabel
         dateLabel.numberOfLines = 0
         dateLabel.adjustsFontForContentSizeCategory = true
         
