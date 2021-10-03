@@ -29,18 +29,23 @@ class ForecastView: UIView {
     private func setup() {
         dateLabel.font = .preferredFont(forTextStyle: .body)
         dateLabel.numberOfLines = 0
+        dateLabel.adjustsFontForContentSizeCategory = true
         
         avgTemperatureLabel.font = .preferredFont(forTextStyle: .body)
         avgTemperatureLabel.numberOfLines = 0
+        avgTemperatureLabel.adjustsFontForContentSizeCategory = true
         
         pressureLabel.font = .preferredFont(forTextStyle: .body)
         pressureLabel.numberOfLines = 0
+        pressureLabel.adjustsFontForContentSizeCategory = true
         
         humidityLabel.font = .preferredFont(forTextStyle: .body)
         humidityLabel.numberOfLines = 0
+        humidityLabel.adjustsFontForContentSizeCategory = true
         
         descriptionLabel.font = .preferredFont(forTextStyle: .body)
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.adjustsFontForContentSizeCategory = true
         
         let contentView = UIStackView(arrangedSubviews: [
             dateLabel,
@@ -50,8 +55,8 @@ class ForecastView: UIView {
             descriptionLabel
         ])
         contentView.axis = .vertical
-        contentView.spacing = 16
+        contentView.spacing = Constant.spacing(2)
         addSubview(contentView)
-        contentView.easy.layout(Edges(16))
+        contentView.easy.layout(Edges(Constant.spacing(2)))
     }
 }

@@ -51,14 +51,25 @@ class DailyForecastViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
         
+        tableView.isHidden = true
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
         tableView.easy.layout(Edges())
         
+        errorLabel.isHidden = true
+        errorLabel.numberOfLines = 0
+        errorLabel.textAlignment = .center
+        errorLabel.font = .preferredFont(forTextStyle: .body)
+        errorLabel.adjustsFontForContentSizeCategory = true
         view.addSubview(errorLabel)
-        errorLabel.easy.layout(Center())
+        errorLabel.easy.layout(
+            CenterY(),
+            Left(Constant.spacing(2)),
+            Right(Constant.spacing(2))
+        )
         
+        spinnerView.isHidden = true
         spinnerView.startAnimating()
         view.addSubview(spinnerView)
         spinnerView.easy.layout(Center())
@@ -120,7 +131,13 @@ class DailyForecastViewController: UIViewController {
                     self?.tableView.reloadData()
                 case let .error(error):
                     self?.errorLabel.isHidden = false
-                    self?.errorLabel.text = "\(error)"
+                    
+                    switch error {
+                    case .cityNotFound:
+                        self?.errorLabel.text = NSLocalizedString("dailyForecast.error.cityNotFound", comment: "")
+                    case .unknown:
+                        self?.errorLabel.text = NSLocalizedString("dailyForecast.error.unknown", comment: "")
+                    }
                 }
             }
             .disposed(by: disposeBag)

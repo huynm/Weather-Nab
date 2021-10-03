@@ -26,13 +26,31 @@ protocol DailyForecastViewModelProtocol {
     var outputs: DailyForecastViewModelOutputs { get }
 }
 
-enum DailyForecastAlert {
+enum DailyForecastAlert: Equatable {
     case minimumQueryLength(Int)
+    
+    static func ==(lhs: DailyForecastAlert, rhs: DailyForecastAlert) -> Bool {
+        switch (lhs, rhs) {
+        case let (.minimumQueryLength(lhsLength), .minimumQueryLength(rhsLength)):
+            return lhsLength == rhsLength
+        }
+    }
 }
 
-enum DailyForecastViewState {
+enum DailyForecastViewState: Equatable {
     case forecastReport(DailyForecastReport)
     case error(ForecastError)
+    
+    static func ==(lhs: DailyForecastViewState, rhs: DailyForecastViewState) -> Bool {
+        switch (lhs, rhs) {
+        case let (.forecastReport(lhsReport), .forecastReport(rhsReport)):
+            return lhsReport == rhsReport
+        case let (.error(lhsError), .error(rhsError)):
+            return lhsError == rhsError
+        default:
+            return false
+        }
+    }
 }
 
 class DailyForecastViewModel:
@@ -48,10 +66,9 @@ class DailyForecastViewModel:
     let initialQuery: Observable<String>
     let showAlert: Observable<DailyForecastAlert>
     
-    init(repository: WeatherRepository) {
-        let initialQuery = "Saigon"
+    init(initialQuery: String, repository: WeatherRepository) {
         let minimumQueryLength = 3
-        let isLoading = BehaviorRelay(value: true)
+        let isLoading = BehaviorRelay(value: false)
         
         let fetchForecastsTrigger = Observable.merge(
             viewDidLoadRelay.map { initialQuery },
@@ -69,10 +86,12 @@ class DailyForecastViewModel:
                 )
                 return repository
                     .dailyForecastReport(with: params)
-                    .do(onSubscribed: {
-                        isLoading.accept(true)
-                    }, onDispose: {
+                    .do(onNext: { _ in
                         isLoading.accept(false)
+                    }, onError: { _ in
+                        isLoading.accept(false)
+                    }, onSubscribe: {
+                        isLoading.accept(true)
                     })
                     .materialize()
             }

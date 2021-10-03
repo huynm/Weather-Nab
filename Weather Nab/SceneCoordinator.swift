@@ -26,7 +26,10 @@ class SceneCoordinator: Coordinator {
     func trigger(_ route: Route) {
         switch route {
         case .dailyForecast:
-            let weatherViewModel = DailyForecastViewModel(repository: environment.weatherRepository)
+            let weatherViewModel = DailyForecastViewModel(
+                initialQuery: "Saigon",
+                repository: environment.weatherRepository
+            )
             let weatherViewController = DailyForecastViewController(viewModel: weatherViewModel)
             let weatherNavigationController = UINavigationController(rootViewController: weatherViewController)
             window?.rootViewController = weatherNavigationController

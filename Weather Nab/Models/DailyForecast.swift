@@ -11,7 +11,7 @@ enum MeasurementUnit {
     case metric
 }
 
-struct DailyForecast {
+struct DailyForecast: Equatable {
     let date: Date
     let avgTemperature: Double
     let measurementUnit: MeasurementUnit
@@ -20,7 +20,7 @@ struct DailyForecast {
     let description: String
 }
 
-struct DailyForecastReport {
+struct DailyForecastReport: Equatable {
     let city: String
     let forecasts: [DailyForecast]
 }

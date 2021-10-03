@@ -14,3 +14,5 @@
 "dailyForecast.humidityTitle" = "Humidity";
 "dailyForecast.pressureTitle" = "Pressure";
 "dailyForecast.descriptionTitle" = "Description";
+"dailyForecast.error.unknown" = "There was a problem getting forecasts. Please try again later";
+"dailyForecast.error.cityNotFound" = "Can not find the city matching your search term. Please try another one";
