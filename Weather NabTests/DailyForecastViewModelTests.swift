@@ -16,7 +16,6 @@ class DailyForecastViewModelTests: XCTestCase {
     var disposeBag: DisposeBag!
     var repository: MockWeatherRepository!
     
-    var initialQuery: TestableObserver<String>!
     var isLoading: TestableObserver<Bool>!
     var viewState: TestableObserver<DailyForecastViewState>!
     var showAlert: TestableObserver<DailyForecastAlert>!
@@ -27,14 +26,9 @@ class DailyForecastViewModelTests: XCTestCase {
         viewModel = DailyForecastViewModel(initialQuery: "Saigon", repository: repository)
         disposeBag = DisposeBag()
         
-        initialQuery = scheduler.createObserver(String.self)
         isLoading = scheduler.createObserver(Bool.self)
         viewState = scheduler.createObserver(DailyForecastViewState.self)
         showAlert = scheduler.createObserver(DailyForecastAlert.self)
-        
-        viewModel.outputs.initialQuery
-            .bind(to: initialQuery)
-            .disposed(by: disposeBag)
         
         viewModel.outputs.isLoading
             .bind(to: isLoading)
@@ -49,13 +43,6 @@ class DailyForecastViewModelTests: XCTestCase {
             .disposed(by: disposeBag)
     }
     
-    func testInitialQuery() throws {
-        XCTAssertEqual(initialQuery.events, [
-            .next(0, "Saigon"),
-            .completed(0)
-        ])
-    }
-    
     func testIsLoading() throws {
         repository.delay = .seconds(5)
         repository.queryToErrorMap = [
@@ -64,32 +51,29 @@ class DailyForecastViewModelTests: XCTestCase {
         ]
         
         scheduler.createColdObservable([
-            .next(10, { self.viewModel.inputs.viewDidLoad() }),
-            .next(20, { self.viewModel.inputs.didSubmitQuery("q") }),
-            .next(30, { self.viewModel.inputs.didSubmitQuery("qu") }),
-            .next(40, { self.viewModel.inputs.didSubmitQuery("que") }),
-            .next(50, { self.viewModel.inputs.didSubmitQuery("query") }),
-            .next(51, { self.viewModel.inputs.didSubmitQuery("query") }),
-            .next(60, { self.viewModel.inputs.didSubmitQuery("unknown") }),
-            .next(70, { self.viewModel.inputs.didSubmitQuery(nil) }),
-            .next(80, { self.viewModel.inputs.didSubmitQuery("    ") }),
-            .next(90, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
+            .next(10, { self.viewModel.inputs.didSubmitQuery("q") }),
+            .next(20, { self.viewModel.inputs.didSubmitQuery("qu") }),
+            .next(30, { self.viewModel.inputs.didSubmitQuery("que") }),
+            .next(40, { self.viewModel.inputs.didSubmitQuery("query") }),
+            .next(41, { self.viewModel.inputs.didSubmitQuery("query") }),
+            .next(50, { self.viewModel.inputs.didSubmitQuery("unknown") }),
+            .next(60, { self.viewModel.inputs.didSubmitQuery(nil) }),
+            .next(70, { self.viewModel.inputs.didSubmitQuery("    ") }),
+            .next(80, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
         ]).bind { $0() }.disposed(by: disposeBag)
         
         scheduler.start()
         
         XCTAssertEqual(isLoading.events, [
             .next(0, false),
-            .next(10, true),
-            .next(15, false),
+            .next(30, true),
+            .next(35, false),
             .next(40, true),
-            .next(45, false),
+            .next(46, false),
             .next(50, true),
-            .next(56, false),
-            .next(60, true),
-            .next(65, false),
-            .next(90, true),
-            .next(95, false)
+            .next(55, false),
+            .next(80, true),
+            .next(85, false)
         ])
     }
     
@@ -113,26 +97,25 @@ class DailyForecastViewModelTests: XCTestCase {
         ]
         
         scheduler.createColdObservable([
-            .next(10, { self.viewModel.inputs.viewDidLoad() }),
-            .next(20, { self.viewModel.inputs.didSubmitQuery("q") }),
-            .next(30, { self.viewModel.inputs.didSubmitQuery("qu") }),
-            .next(40, { self.viewModel.inputs.didSubmitQuery("que") }),
-            .next(50, { self.viewModel.inputs.didSubmitQuery("query") }),
-            .next(51, { self.viewModel.inputs.didSubmitQuery("query") }),
-            .next(60, { self.viewModel.inputs.didSubmitQuery("unknown") }),
-            .next(70, { self.viewModel.inputs.didSubmitQuery(nil) }),
-            .next(80, { self.viewModel.inputs.didSubmitQuery("    ") }),
-            .next(90, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
+            .next(10, { self.viewModel.inputs.didSubmitQuery("q") }),
+            .next(20, { self.viewModel.inputs.didSubmitQuery("qu") }),
+            .next(30, { self.viewModel.inputs.didSubmitQuery("que") }),
+            .next(40, { self.viewModel.inputs.didSubmitQuery("query") }),
+            .next(41, { self.viewModel.inputs.didSubmitQuery("query") }),
+            .next(50, { self.viewModel.inputs.didSubmitQuery("unknown") }),
+            .next(60, { self.viewModel.inputs.didSubmitQuery(nil) }),
+            .next(70, { self.viewModel.inputs.didSubmitQuery("    ") }),
+            .next(80, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
         ]).bind { $0() }.disposed(by: disposeBag)
         
         scheduler.start()
         
         XCTAssertEqual(viewState.events, [
-            .next(15, .forecastReport(DailyForecastReport(city: "Saigon", forecasts: forecasts))),
-            .next(45, .error(.cityNotFound)),
-            .next(56, .forecastReport(DailyForecastReport(city: "query", forecasts: forecasts))),
-            .next(65, .error(.unknown)),
-            .next(95, .forecastReport(DailyForecastReport(city: "query", forecasts: forecasts))),
+            .next(0, .initial),
+            .next(35, .error(.cityNotFound)),
+            .next(46, .forecastReport(DailyForecastReport(city: "query", forecasts: forecasts))),
+            .next(55, .error(.unknown)),
+            .next(85, .forecastReport(DailyForecastReport(city: "query", forecasts: forecasts))),
         ])
     }
     

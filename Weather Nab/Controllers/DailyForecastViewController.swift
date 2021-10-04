@@ -12,7 +12,7 @@ import RxCocoa
 
 class DailyForecastViewController: UIViewController {
     private let tableView = UITableView()
-    private let errorLabel = UILabel()
+    private let messageLabel = UILabel()
     private let spinnerView = UIActivityIndicatorView(style: .large)
     private let searchController = UISearchController()
     
@@ -33,7 +33,6 @@ class DailyForecastViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         bindViewModel()
-        viewModel.inputs.viewDidLoad()
     }
     
     private func setupView() {
@@ -59,13 +58,13 @@ class DailyForecastViewController: UIViewController {
         view.addSubview(tableView)
         tableView.easy.layout(Edges())
         
-        errorLabel.isHidden = true
-        errorLabel.numberOfLines = 0
-        errorLabel.textAlignment = .center
-        errorLabel.font = .preferredFont(forTextStyle: .body)
-        errorLabel.adjustsFontForContentSizeCategory = true
-        view.addSubview(errorLabel)
-        errorLabel.easy.layout(
+        messageLabel.isHidden = true
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = .preferredFont(forTextStyle: .body)
+        messageLabel.adjustsFontForContentSizeCategory = true
+        view.addSubview(messageLabel)
+        messageLabel.easy.layout(
             CenterY(),
             Left(Constant.spacing(2)),
             Right(Constant.spacing(2))
@@ -79,11 +78,6 @@ class DailyForecastViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.outputs.initialQuery
-            .observe(on: MainScheduler.instance)
-            .bind { [weak self] in self?.searchController.searchBar.text = $0 }
-            .disposed(by: disposeBag)
-        
         viewModel.outputs.showAlert
             .observe(on: MainScheduler.instance)
             .bind { [weak self] in
@@ -119,7 +113,7 @@ class DailyForecastViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .bind { [weak self] isLoading, state in
                 self?.spinnerView.isHidden = true
-                self?.errorLabel.isHidden = true
+                self?.messageLabel.isHidden = true
                 self?.tableView.isHidden = true
                 
                 if isLoading {
@@ -128,18 +122,20 @@ class DailyForecastViewController: UIViewController {
                 }
                 
                 switch state {
+                case .initial:
+                    self?.messageLabel.isHidden = false
+                    self?.messageLabel.text = NSLocalizedString("dailyForecast.initialMessage", comment: "")
                 case let .forecastReport(forecastReport):
                     self?.forecastReport = forecastReport
                     self?.tableView.isHidden = false
                     self?.tableView.reloadData()
                 case let .error(error):
-                    self?.errorLabel.isHidden = false
-                    
+                    self?.messageLabel.isHidden = false
                     switch error {
                     case .cityNotFound:
-                        self?.errorLabel.text = NSLocalizedString("dailyForecast.error.cityNotFound", comment: "")
+                        self?.messageLabel.text = NSLocalizedString("dailyForecast.error.cityNotFound", comment: "")
                     case .unknown:
-                        self?.errorLabel.text = NSLocalizedString("dailyForecast.error.unknown", comment: "")
+                        self?.messageLabel.text = NSLocalizedString("dailyForecast.error.unknown", comment: "")
                     }
                 }
             }

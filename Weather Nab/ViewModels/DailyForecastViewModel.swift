@@ -10,14 +10,12 @@ import RxSwift
 import RxRelay
 
 protocol DailyForecastViewModelInputs {
-    func viewDidLoad()
     func didSubmitQuery(_ query: String?)
 }
 
 protocol DailyForecastViewModelOutputs {
     var viewState: Observable<DailyForecastViewState> { get }
     var isLoading: Observable<Bool> { get }
-    var initialQuery: Observable<String> { get }
     var showAlert: Observable<DailyForecastAlert> { get }
 }
 
@@ -38,11 +36,14 @@ enum DailyForecastAlert: Equatable {
 }
 
 enum DailyForecastViewState: Equatable {
+    case initial
     case forecastReport(DailyForecastReport)
     case error(ForecastError)
     
     static func ==(lhs: DailyForecastViewState, rhs: DailyForecastViewState) -> Bool {
         switch (lhs, rhs) {
+        case (.initial, .initial):
+            return true
         case let (.forecastReport(lhsReport), .forecastReport(rhsReport)):
             return lhsReport == rhsReport
         case let (.error(lhsError), .error(rhsError)):
@@ -63,18 +64,13 @@ class DailyForecastViewModel:
     
     let isLoading: Observable<Bool>
     let viewState: Observable<DailyForecastViewState>
-    let initialQuery: Observable<String>
     let showAlert: Observable<DailyForecastAlert>
     
     init(initialQuery: String, repository: WeatherRepository) {
         let minimumQueryLength = 3
         let isLoading = BehaviorRelay(value: false)
         
-        let fetchForecastTrigger = Observable.merge(
-            viewDidLoadRelay.map { initialQuery },
-            didSubmitQueryRelay.asObservable()
-        )
-        let forecasts = fetchForecastTrigger
+        let forecasts = didSubmitQueryRelay
             .filter {
                 ($0?.trimmed.count ?? 0) >= minimumQueryLength
             }.compactMap {
@@ -116,8 +112,7 @@ class DailyForecastViewModel:
             }
             .compactMap { $0 }
             .distinctUntilChanged()
-        
-        self.initialQuery = .just(initialQuery)
+            .startWith(.initial)
         
         self.showAlert = didSubmitQueryRelay
             .compactMap {
@@ -126,11 +121,6 @@ class DailyForecastViewModel:
                 }
                 return nil
             }
-    }
-    
-    private let viewDidLoadRelay = PublishRelay<Void>()
-    func viewDidLoad() {
-        viewDidLoadRelay.accept(())
     }
     
     private let didSubmitQueryRelay = PublishRelay<String?>()
