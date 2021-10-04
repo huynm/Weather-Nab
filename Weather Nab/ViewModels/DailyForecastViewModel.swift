@@ -71,11 +71,9 @@ class DailyForecastViewModel:
         let isLoading = BehaviorRelay(value: false)
         
         let forecasts = didSubmitQueryRelay
-            .filter {
-                ($0?.trimmed.count ?? 0) >= minimumQueryLength
-            }.compactMap {
-                $0
-            }.flatMapLatest { query -> Observable<Event<DailyForecastReport>> in
+            .filter { ($0?.trimmed.count ?? 0) >= minimumQueryLength }
+            .compactMap { $0 }
+            .flatMapLatest { query -> Observable<Event<DailyForecastReport>> in
                 let params = ForecastParams(
                     forecaseType: .daily,
                     query: query.trimmed,
@@ -116,7 +114,7 @@ class DailyForecastViewModel:
         
         self.showAlert = didSubmitQueryRelay
             .compactMap {
-                if ($0?.count ?? 0) < minimumQueryLength {
+                if ($0?.trimmed.count ?? 0) < minimumQueryLength {
                     return .minimumQueryLength(minimumQueryLength)
                 }
                 return nil

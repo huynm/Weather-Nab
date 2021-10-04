@@ -1,0 +1,38 @@
+[
+  {
+    "query": "atlantis",
+    "payload": {
+      "error": {
+        "_0": "cityNotFound"
+      }
+    }
+  },
+  {
+    "query": "melbourne",
+    "payload": {
+      "dailyForecastReport": {
+        "_0": {
+          "city": "Melbourne",
+          "forecasts": [
+            {
+              "date": 1633320000,
+              "averageTemperature": 25,
+              "measurementUnit": "metric",
+              "pressure": 1000,
+              "humidity": 90,
+              "description": "Good weather"
+            },
+            {
+              "date": 1633406400,
+              "averageTemperature": 30,
+              "measurementUnit": "metric",
+              "pressure": 1100,
+              "humidity": 95,
+              "description": "Still good weather"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

@@ -86,7 +86,7 @@ class OpenWeatherRepository: WeatherRepository {
         let forecasts = response.list.map {
             DailyForecast(
                 date: $0.dt,
-                avgTemperature: ($0.temp.max + $0.temp.min) / 2,
+                averageTemperature: ($0.temp.max + $0.temp.min) / 2,
                 measurementUnit: params.measurementUnit,
                 pressure: $0.pressure,
                 humidity: $0.humidity,

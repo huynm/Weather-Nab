@@ -13,7 +13,7 @@ enum ForecastType {
     case daily
 }
 
-enum ForecastError: Error {
+enum ForecastError: String, Error, Decodable {
     case cityNotFound
     case unknown
 }

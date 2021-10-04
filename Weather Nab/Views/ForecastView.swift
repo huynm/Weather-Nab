@@ -11,7 +11,7 @@ import UIKit
 
 class ForecastView: UIView {
     let dateLabel = UILabel()
-    let avgTemperatureLabel = UILabel()
+    let averageTemperatureLabel = UILabel()
     let pressureLabel = UILabel()
     let humidityLabel = UILabel()
     let descriptionLabel = UILabel()
@@ -32,25 +32,29 @@ class ForecastView: UIView {
         dateLabel.numberOfLines = 0
         dateLabel.adjustsFontForContentSizeCategory = true
         
-        avgTemperatureLabel.font = .preferredFont(forTextStyle: .body)
-        avgTemperatureLabel.numberOfLines = 0
-        avgTemperatureLabel.adjustsFontForContentSizeCategory = true
+        averageTemperatureLabel.font = .preferredFont(forTextStyle: .body)
+        averageTemperatureLabel.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastAverageTemperatureLabel
+        averageTemperatureLabel.numberOfLines = 0
+        averageTemperatureLabel.adjustsFontForContentSizeCategory = true
         
         pressureLabel.font = .preferredFont(forTextStyle: .body)
+        pressureLabel.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastPressureLabel
         pressureLabel.numberOfLines = 0
         pressureLabel.adjustsFontForContentSizeCategory = true
         
         humidityLabel.font = .preferredFont(forTextStyle: .body)
+        humidityLabel.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastHumidityLabel
         humidityLabel.numberOfLines = 0
         humidityLabel.adjustsFontForContentSizeCategory = true
         
         descriptionLabel.font = .preferredFont(forTextStyle: .body)
+        descriptionLabel.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastDescriptionLabel
         descriptionLabel.numberOfLines = 0
         descriptionLabel.adjustsFontForContentSizeCategory = true
         
         let contentView = UIStackView(arrangedSubviews: [
             dateLabel,
-            avgTemperatureLabel,
+            averageTemperatureLabel,
             pressureLabel,
             humidityLabel,
             descriptionLabel

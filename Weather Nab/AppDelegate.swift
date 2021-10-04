@@ -13,8 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        #if UI_TEST
+        let weatherRepositoryDelay = UserDefaults.standard.double(forKey: "WeatherRepositoryDelay")
+        let weatherRepository = MockWeatherRepository(delay: Int(weatherRepositoryDelay))
+        #else
         let weatherRepository = OpenWeatherRepository(appId: "60c6fbeb4b93ac653c492ba806fc346d")
-        let environment = AppEnvironment(weatherRepository: MockWeatherRepository())
+        #endif
+        let environment = AppEnvironment(weatherRepository: weatherRepository)
         AppEnvironment.setEnvironment(environment)
         
         return true

@@ -10,10 +10,10 @@
 "button.ok" = "OK";
 "dailyForecast.screenTitle" = "Weather Forecast";
 "dailyForecast.initialMessage" = "Enter a city into the search field to get started";
-"dailyForecast.dateTitle" = "Date";
-"dailyForecast.avgTemperatureTitle" = "Average Temperature";
-"dailyForecast.humidityTitle" = "Humidity";
-"dailyForecast.pressureTitle" = "Pressure";
-"dailyForecast.descriptionTitle" = "Description";
+"dailyForecast.date" = "Date: %@";
+"dailyForecast.averageTemperature" = "Average Temperature: %@";
+"dailyForecast.humidity" = "Humidity: %@";
+"dailyForecast.pressure" = "Pressure: %@";
+"dailyForecast.description" = "Description: %@";
 "dailyForecast.error.unknown" = "There was a problem getting forecasts. Please try again later";
 "dailyForecast.error.cityNotFound" = "Can not find the city matching your search term. Please try another one";

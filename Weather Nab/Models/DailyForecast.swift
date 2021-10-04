@@ -7,20 +7,20 @@
 
 import Foundation
 
-enum MeasurementUnit {
+enum MeasurementUnit: String, Decodable {
     case metric
 }
 
-struct DailyForecast: Equatable {
+struct DailyForecast: Decodable, Equatable {
     let date: Date
-    let avgTemperature: Double
+    let averageTemperature: Double
     let measurementUnit: MeasurementUnit
     let pressure: Int
     let humidity: Int
     let description: String
 }
 
-struct DailyForecastReport: Equatable {
+struct DailyForecastReport: Decodable, Equatable {
     let city: String
     let forecasts: [DailyForecast]
 }

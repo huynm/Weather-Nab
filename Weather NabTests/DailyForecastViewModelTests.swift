@@ -58,8 +58,8 @@ class DailyForecastViewModelTests: XCTestCase {
             .next(41, { self.viewModel.inputs.didSubmitQuery("query") }),
             .next(50, { self.viewModel.inputs.didSubmitQuery("unknown") }),
             .next(60, { self.viewModel.inputs.didSubmitQuery(nil) }),
-            .next(70, { self.viewModel.inputs.didSubmitQuery("    ") }),
-            .next(80, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
+            .next(70, { self.viewModel.inputs.didSubmitQuery("   ") }),
+            .next(80, { self.viewModel.inputs.didSubmitQuery(" query ") }),
         ]).bind { $0() }.disposed(by: disposeBag)
         
         scheduler.start()
@@ -81,7 +81,7 @@ class DailyForecastViewModelTests: XCTestCase {
         let forecasts = [
             DailyForecast(
                 date: Date(),
-                avgTemperature: 30,
+                averageTemperature: 30,
                 measurementUnit: .metric,
                 pressure: 1000,
                 humidity: 90,
@@ -104,8 +104,8 @@ class DailyForecastViewModelTests: XCTestCase {
             .next(41, { self.viewModel.inputs.didSubmitQuery("query") }),
             .next(50, { self.viewModel.inputs.didSubmitQuery("unknown") }),
             .next(60, { self.viewModel.inputs.didSubmitQuery(nil) }),
-            .next(70, { self.viewModel.inputs.didSubmitQuery("    ") }),
-            .next(80, { self.viewModel.inputs.didSubmitQuery("  query  ") }),
+            .next(70, { self.viewModel.inputs.didSubmitQuery("   ") }),
+            .next(80, { self.viewModel.inputs.didSubmitQuery(" query ") }),
         ]).bind { $0() }.disposed(by: disposeBag)
         
         scheduler.start()
@@ -130,9 +130,12 @@ class DailyForecastViewModelTests: XCTestCase {
             .next(10, { [unowned self] in self.viewModel.inputs.didSubmitQuery("q") }),
             .next(20, { [unowned self] in self.viewModel.inputs.didSubmitQuery("qu") }),
             .next(30, { [unowned self] in self.viewModel.inputs.didSubmitQuery("que") }),
-            .next(40, { [unowned self] in self.viewModel.inputs.didSubmitQuery(nil) }),
-            .next(50, { [unowned self] in self.viewModel.inputs.didSubmitQuery("query") }),
-            .next(60, { [unowned self] in self.viewModel.inputs.didSubmitQuery("q") }),
+            .next(40, { [unowned self] in self.viewModel.inputs.didSubmitQuery("query") }),
+            .next(50, { [unowned self] in self.viewModel.inputs.didSubmitQuery(" q ") }),
+            .next(60, { [unowned self] in self.viewModel.inputs.didSubmitQuery(" qu ") }),
+            .next(70, { [unowned self] in self.viewModel.inputs.didSubmitQuery(" query ") }),
+            .next(80, { [unowned self] in self.viewModel.inputs.didSubmitQuery("   ") }),
+            .next(90, { [unowned self] in self.viewModel.inputs.didSubmitQuery(nil) }),
         ]).bind { $0() }.disposed(by: disposeBag)
         
         scheduler.start()
@@ -140,8 +143,10 @@ class DailyForecastViewModelTests: XCTestCase {
         XCTAssertEqual(showAlert.events, [
             .next(10, DailyForecastAlert.minimumQueryLength(3)),
             .next(20, DailyForecastAlert.minimumQueryLength(3)),
-            .next(40, DailyForecastAlert.minimumQueryLength(3)),
+            .next(50, DailyForecastAlert.minimumQueryLength(3)),
             .next(60, DailyForecastAlert.minimumQueryLength(3)),
+            .next(80, DailyForecastAlert.minimumQueryLength(3)),
+            .next(90, DailyForecastAlert.minimumQueryLength(3)),
         ])
     }
 }
