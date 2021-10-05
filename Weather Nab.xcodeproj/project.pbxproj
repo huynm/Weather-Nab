@@ -48,6 +48,8 @@
 		003A7D042709B24F00ADC953 /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A7D022709B1F600ADC953 /* AccessibilityIdentifier.swift */; };
 		00416D1E270BF297006AF8E6 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00416D1D270BF297006AF8E6 /* Date+Utils.swift */; };
 		00416D1F270C1600006AF8E6 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00416D1D270BF297006AF8E6 /* Date+Utils.swift */; };
+		00416D21270C41CD006AF8E6 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00416D20270C41CD006AF8E6 /* SectionHeaderView.swift */; };
+		00416D22270C4DC2006AF8E6 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00416D20270C41CD006AF8E6 /* SectionHeaderView.swift */; };
 		0048B2AF270BDD6E00521F14 /* AlamofireNetworkActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 0048B2AE270BDD6E00521F14 /* AlamofireNetworkActivityIndicator */; };
 		0048B2B1270BDD9F00521F14 /* AlamofireNetworkActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 0048B2B0270BDD9F00521F14 /* AlamofireNetworkActivityIndicator */; };
 		00C4A14E2707ED18007EE422 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A14D2707ED18007EE422 /* AppDelegate.swift */; };
@@ -105,6 +107,8 @@
 		003A7D00270986C900ADC953 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		003A7D022709B1F600ADC953 /* AccessibilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifier.swift; sourceTree = "<group>"; };
 		00416D1D270BF297006AF8E6 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
+		00416D20270C41CD006AF8E6 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		00416D23270C4E5C006AF8E6 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00C4A14A2707ED18007EE422 /* Weather Nab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Nab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C4A14D2707ED18007EE422 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C4A14F2707ED18007EE422 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 			children = (
 				00C4A1B8270899AF007EE422 /* ForecastView.swift */,
 				00C4A1BA27089A99007EE422 /* ContainerTableViewCell.swift */,
+				00416D20270C41CD006AF8E6 /* SectionHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = 00C4A1412707ED18007EE422;
 			packageReferences = (
@@ -518,6 +524,7 @@
 				002845A2270AC0320094D03E /* Constant.swift in Sources */,
 				002845A3270AC0320094D03E /* DailyForecastViewController.swift in Sources */,
 				002845A4270AC0320094D03E /* SceneCoordinator.swift in Sources */,
+				00416D22270C4DC2006AF8E6 /* SectionHeaderView.swift in Sources */,
 				002845A5270AC0320094D03E /* NumberFormatter+Percentage.swift in Sources */,
 				00416D1F270C1600006AF8E6 /* Date+Utils.swift in Sources */,
 				002845A6270AC0320094D03E /* AppDelegate.swift in Sources */,
@@ -548,6 +555,7 @@
 				00C4A1B327083B8A007EE422 /* SceneCoordinator.swift in Sources */,
 				00C4A1BD27089DBB007EE422 /* NumberFormatter+Percentage.swift in Sources */,
 				00C4A14E2707ED18007EE422 /* AppDelegate.swift in Sources */,
+				00416D21270C41CD006AF8E6 /* SectionHeaderView.swift in Sources */,
 				00C4A1BB27089A99007EE422 /* ContainerTableViewCell.swift in Sources */,
 				00C4A1A927081CC5007EE422 /* OpenWeatherRepository.swift in Sources */,
 				00C4A1AC27081EB4007EE422 /* DailyForecastViewModel.swift in Sources */,
@@ -602,6 +610,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				003A7CF0270940CF00ADC953 /* en */,
+				00416D23270C4E5C006AF8E6 /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -679,6 +688,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -740,6 +750,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

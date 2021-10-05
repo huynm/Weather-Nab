@@ -54,6 +54,7 @@ class OpenWeatherRepository: WeatherRepository {
     private static let measurementUnitParamName = "units"
     private static let numberOfDaysParamName = "cnt"
     private static let queryParamName = "q"
+    private static let languageParamName = "lang"
     
     private let session: Session
     private let appId: String
@@ -165,7 +166,8 @@ class OpenWeatherRepository: WeatherRepository {
             URLQueryItem(name: Self.queryParamName, value: params.query),
             URLQueryItem(name: Self.appIDParamName, value: appId),
             URLQueryItem(name: Self.numberOfDaysParamName, value: "\(params.numberOfDays)"),
-            URLQueryItem(name: Self.measurementUnitParamName, value: measurementUnit)
+            URLQueryItem(name: Self.measurementUnitParamName, value: measurementUnit),
+            URLQueryItem(name: Self.languageParamName, value: params.language)
         ]
         
         guard let url = urlComponents.url?

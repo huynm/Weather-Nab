@@ -58,6 +58,8 @@ class DailyForecastUITests: XCTestCase {
         XCTAssertFalse(messageLabel.exists)
         
         let cells = tableView.children(matching: .cell).allElementsBoundByIndex
+        let sectionHeaderLabel = tableView.staticTexts[AccessibilityIdentifier.dailyForecastSectionHeaderLabel].firstMatch
+        XCTAssertEqual(sectionHeaderLabel.label, "Melbourne")
         XCTAssertEqual(cells.count, 2)
         assertForecast(
             cells[0],
@@ -219,6 +221,8 @@ class DailyForecastUITests: XCTestCase {
         XCTAssertFalse(messageLabel.exists)
         
         let cells = tableView.children(matching: .cell).allElementsBoundByIndex
+        let sectionHeaderLabel = tableView.staticTexts[AccessibilityIdentifier.dailyForecastSectionHeaderLabel].firstMatch
+        XCTAssertEqual(sectionHeaderLabel.label, "Melbourne")
         XCTAssertEqual(cells.count, 2)
         assertForecast(
             cells[0],

@@ -10,7 +10,7 @@ import Foundation
 extension DateFormatter {
     static var `default`: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, dd MMM yyyy"
+        formatter.dateFormat = NSLocalizedString("dailyForecast.dateFormat", comment: "")
         return formatter
     }
 }

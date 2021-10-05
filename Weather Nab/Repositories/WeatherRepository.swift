@@ -19,6 +19,7 @@ enum ForecastError: String, Error, Decodable {
 }
 
 struct ForecastParams {
+    let language: String?
     let forecaseType: ForecastType
     let query: String
     let numberOfDays: Int

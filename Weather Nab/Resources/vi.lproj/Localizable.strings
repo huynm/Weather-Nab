@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  Weather Nab
+
+  Created by Huy Nguyen on 10/3/21.
+*/
+
+"alert.minimumQueryLength.title" = "Chú ý";
+"alert.minimumQueryLength.message" = "Từ khoá tìm kiếm phải từ %d kí tự trở lên";
+"button.ok" = "OK";
+"dailyForecast.screenTitle" = "Dự báo thời tiết";
+"dailyForecast.initialMessage" = "Nhập tên một thành phố vào thanh tìm kiếm để xem dự báo thời tiết";
+"dailyForecast.searchBarPlaceholder" = "Tìm kiếm theo tên thành phố";
+"dailyForecast.dateFormat" = "EEEE, dd MMMM, yyyy";
+"dailyForecast.date" = "Ngày: %@";
+"dailyForecast.averageTemperature" = "Nhiệt độ trung bình: %@";
+"dailyForecast.humidity" = "Độ ẩm: %@";
+"dailyForecast.pressure" = "Áp suất: %@";
+"dailyForecast.description" = "Ghi chú: %@";
+"dailyForecast.error.unknown" = "Hiện không thể truy suất thông tin thời tiết. Hãy thử lại vào lúc khác";
+"dailyForecast.error.cityNotFound" = "Không tìm thấy thành phố phù hợp với từ khoá tìm kiếm. Hãy thử lại với từ khác";

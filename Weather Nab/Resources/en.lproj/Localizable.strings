@@ -9,7 +9,9 @@
 "alert.minimumQueryLength.message" = "Search term must be %d or more characters";
 "button.ok" = "OK";
 "dailyForecast.screenTitle" = "Weather Forecast";
-"dailyForecast.initialMessage" = "Enter a city into the search field to get started";
+"dailyForecast.initialMessage" = "Enter a city into the search field to get forecasts";
+"dailyForecast.searchBarPlaceholder" = "Search by city name";
+"dailyForecast.dateFormat" = "EEE, dd MMM yyyy";
 "dailyForecast.date" = "Date: %@";
 "dailyForecast.averageTemperature" = "Average Temperature: %@";
 "dailyForecast.humidity" = "Humidity: %@";

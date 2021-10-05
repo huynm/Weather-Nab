@@ -11,6 +11,7 @@ enum AccessibilityIdentifier {
     static let dailyForecastMessageLabel = "dailyForecastMessageLabel"
     static let dailyForecastSpinner = "dailyForecastSpinner"
     static let dailyForecastTableView = "dailyForecastTableView"
+    static let dailyForecastSectionHeaderLabel = "dailyForecastSectionHeaderLabel"
     static let dailyForecastDateLabel = "dailyForecastDateLabel"
     static let dailyForecastAverageTemperatureLabel = "dailyForecastAverageTemperatureLabel"
     static let dailyForecastHumidityLabel = "dailyForecastHumidityLabel"

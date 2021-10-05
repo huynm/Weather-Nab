@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 class DailyForecastViewController: UIViewController {
+    fileprivate static let sectionHeaderIdentifier = "SectionHeaderView"
+    
     private let tableView = UITableView()
     private let messageLabel = UILabel()
     private let spinnerView = UIActivityIndicatorView(style: .large)
@@ -47,6 +49,7 @@ class DailyForecastViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = NSLocalizedString("dailyForecast.searchBarPlaceholder", comment: "")
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
         
@@ -62,6 +65,10 @@ class DailyForecastViewController: UIViewController {
         )
         view.addSubview(tableView)
         tableView.easy.layout(Edges())
+        tableView.register(
+            SectionHeaderView.self,
+            forHeaderFooterViewReuseIdentifier: Self.sectionHeaderIdentifier
+        )
         
         messageLabel.isHidden = true
         messageLabel.numberOfLines = 0
@@ -71,7 +78,7 @@ class DailyForecastViewController: UIViewController {
         messageLabel.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastMessageLabel
         view.addSubview(messageLabel)
         messageLabel.easy.layout(
-            CenterY(),
+            CenterY().to(view.safeAreaLayoutGuide),
             Left(Constant.spacing(2)),
             Right(Constant.spacing(2))
         )
@@ -80,7 +87,10 @@ class DailyForecastViewController: UIViewController {
         spinnerView.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastSpinner
         spinnerView.startAnimating()
         view.addSubview(spinnerView)
-        spinnerView.easy.layout(Center())
+        spinnerView.easy.layout(
+            CenterX().to(view.safeAreaLayoutGuide),
+            CenterY().to(view.safeAreaLayoutGuide)
+        )
     }
     
     private func bindViewModel() {
@@ -206,7 +216,10 @@ extension DailyForecastViewController: UITableViewDataSource {
 }
 
 extension DailyForecastViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return forecastReport?.city
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: Self.sectionHeaderIdentifier) as? SectionHeaderView
+            ?? SectionHeaderView()
+        view.titleLabel.text = forecastReport?.city
+        return view
     }
 }

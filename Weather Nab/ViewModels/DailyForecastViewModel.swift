@@ -70,11 +70,17 @@ class DailyForecastViewModel:
         let minimumQueryLength = 3
         let isLoading = BehaviorRelay(value: false)
         
+        let localeIdentifierComponents = Locale.preferredLanguages.first.map {
+            Locale.components(fromIdentifier: $0)
+        }
+        let languageCode = localeIdentifierComponents?[NSLocale.Key.languageCode.rawValue]
+        
         let forecasts = didSubmitQueryRelay
             .filter { ($0?.trimmed.count ?? 0) >= minimumQueryLength }
             .compactMap { $0 }
             .flatMapLatest { query -> Observable<Event<DailyForecastReport>> in
                 let params = ForecastParams(
+                    language: languageCode,
                     forecaseType: .daily,
                     query: query.trimmed,
                     numberOfDays: 7,
