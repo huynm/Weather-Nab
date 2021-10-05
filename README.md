@@ -1,5 +1,8 @@
 # Weather Nab
 
+## NOTE
+This project is compatible with Xcode 13.0 (13A233) only. Xcode 12 and Swift verion less than 5.5 does not have automatic Codable conformance for enums with associated values, which will cause compile errors
+
 ## Installation
 Checkout the repo, open in Xcode, then depends on what you want to do:
 - Run the app: select the App target and run (menu Product > Run)
