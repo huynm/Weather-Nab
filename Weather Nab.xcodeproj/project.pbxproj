@@ -37,7 +37,6 @@
 		002845C8270ACB520094D03E /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002845C7270ACB520094D03E /* LocalizedString.swift */; };
 		002845CA270B00780094D03E /* MockWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002845C9270B00780094D03E /* MockWeatherRepository.swift */; };
 		002845CE270B01690094D03E /* MockWeatherRepositoryResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 002845CD270B01690094D03E /* MockWeatherRepositoryResponse.json */; };
-		002845CF270B01690094D03E /* MockWeatherRepositoryResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 002845CD270B01690094D03E /* MockWeatherRepositoryResponse.json */; };
 		003A7CEA27093E3900ADC953 /* MeasurementFormatter+Degree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A7CE927093E3900ADC953 /* MeasurementFormatter+Degree.swift */; };
 		003A7CEC27093E5900ADC953 /* DateFormatter+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A7CEB27093E5900ADC953 /* DateFormatter+Default.swift */; };
 		003A7CEF270940CF00ADC953 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 003A7CF1270940CF00ADC953 /* Localizable.strings */; };
@@ -504,7 +503,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002845CF270B01690094D03E /* MockWeatherRepositoryResponse.json in Resources */,
 				002845C4270AC8270094D03E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
