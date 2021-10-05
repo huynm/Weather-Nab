@@ -9,7 +9,7 @@ import Foundation
 
 func localizedString(_ key: String, language: String) -> String {
     let bundle = Bundle(for: DailyForecastUITests.self)
-    guard let localizationBundlePath = bundle.path(forResource:language, ofType: "lproj"),
+    guard let localizationBundlePath = bundle.path(forResource: language, ofType: "lproj"),
           let localizationBundle = Bundle(path: localizationBundlePath) else
     {
         return key

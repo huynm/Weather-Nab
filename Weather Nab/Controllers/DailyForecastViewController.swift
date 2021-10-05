@@ -54,6 +54,12 @@ class DailyForecastViewController: UIViewController {
         tableView.accessibilityIdentifier = AccessibilityIdentifier.dailyForecastTableView
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorInset = UIEdgeInsets(
+            top: 0,
+            left: Constant.spacing(2),
+            bottom: 0,
+            right: 0
+        )
         view.addSubview(tableView)
         tableView.easy.layout(Edges())
         

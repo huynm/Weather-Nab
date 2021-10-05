@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireNetworkActivityIndicator
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         let environment = AppEnvironment(weatherRepository: weatherRepository)
         AppEnvironment.setEnvironment(environment)
+        
+        NetworkActivityIndicatorManager.shared.isEnabled = true
         
         return true
     }

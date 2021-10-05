@@ -47,6 +47,10 @@
 		003A7D01270986C900ADC953 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A7D00270986C900ADC953 /* Constant.swift */; };
 		003A7D032709B1F600ADC953 /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A7D022709B1F600ADC953 /* AccessibilityIdentifier.swift */; };
 		003A7D042709B24F00ADC953 /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A7D022709B1F600ADC953 /* AccessibilityIdentifier.swift */; };
+		00416D1E270BF297006AF8E6 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00416D1D270BF297006AF8E6 /* Date+Utils.swift */; };
+		00416D1F270C1600006AF8E6 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00416D1D270BF297006AF8E6 /* Date+Utils.swift */; };
+		0048B2AF270BDD6E00521F14 /* AlamofireNetworkActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 0048B2AE270BDD6E00521F14 /* AlamofireNetworkActivityIndicator */; };
+		0048B2B1270BDD9F00521F14 /* AlamofireNetworkActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 0048B2B0270BDD9F00521F14 /* AlamofireNetworkActivityIndicator */; };
 		00C4A14E2707ED18007EE422 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A14D2707ED18007EE422 /* AppDelegate.swift */; };
 		00C4A1502707ED18007EE422 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A14F2707ED18007EE422 /* SceneDelegate.swift */; };
 		00C4A1522707ED18007EE422 /* DailyForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4A1512707ED18007EE422 /* DailyForecastViewController.swift */; };
@@ -101,6 +105,7 @@
 		003A7CF827094A2600ADC953 /* MockWeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherRepository.swift; sourceTree = "<group>"; };
 		003A7D00270986C900ADC953 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		003A7D022709B1F600ADC953 /* AccessibilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifier.swift; sourceTree = "<group>"; };
+		00416D1D270BF297006AF8E6 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		00C4A14A2707ED18007EE422 /* Weather Nab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Nab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C4A14D2707ED18007EE422 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C4A14F2707ED18007EE422 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +138,7 @@
 				002845B4270AC0320094D03E /* EasyPeasy in Frameworks */,
 				002845B5270AC0320094D03E /* RxRelay in Frameworks */,
 				002845B6270AC0320094D03E /* Alamofire in Frameworks */,
+				0048B2B1270BDD9F00521F14 /* AlamofireNetworkActivityIndicator in Frameworks */,
 				002845B7270AC0320094D03E /* RxCocoa in Frameworks */,
 				002845B8270AC0320094D03E /* RxSwift in Frameworks */,
 			);
@@ -145,6 +151,7 @@
 				00C4A19E2707F450007EE422 /* EasyPeasy in Frameworks */,
 				00C4A1942707F352007EE422 /* RxRelay in Frameworks */,
 				00C4A19B2707F440007EE422 /* Alamofire in Frameworks */,
+				0048B2AF270BDD6E00521F14 /* AlamofireNetworkActivityIndicator in Frameworks */,
 				00C4A1922707F352007EE422 /* RxCocoa in Frameworks */,
 				00C4A1962707F352007EE422 /* RxSwift in Frameworks */,
 			);
@@ -218,15 +225,15 @@
 				00C4A1AD27081F67007EE422 /* AppEnvironment.swift */,
 				00C4A1B227083B8A007EE422 /* SceneCoordinator.swift */,
 				00C4A14F2707ED18007EE422 /* SceneDelegate.swift */,
-				002845CC270B00E00094D03E /* Resources */,
-				002845CB270B00AC0094D03E /* Constants */,
-				00C4A19F2707F5B7007EE422 /* Controllers */,
-				00C4A1AF27083B69007EE422 /* Coordinators */,
-				00C4A1B4270864C2007EE422 /* Extensions */,
 				00C4A1A32707F615007EE422 /* Models */,
-				00C4A1A02707F5C9007EE422 /* Repositories */,
 				00C4A1AA27081EAB007EE422 /* ViewModels */,
 				00C4A1B72708998F007EE422 /* Views */,
+				00C4A19F2707F5B7007EE422 /* Controllers */,
+				00C4A1AF27083B69007EE422 /* Coordinators */,
+				00C4A1A02707F5C9007EE422 /* Repositories */,
+				002845CB270B00AC0094D03E /* Constants */,
+				00C4A1B4270864C2007EE422 /* Extensions */,
+				002845CC270B00E00094D03E /* Resources */,
 				00C4A1582707ED19007EE422 /* LaunchScreen.storyboard */,
 				00C4A15B2707ED19007EE422 /* Info.plist */,
 			);
@@ -307,6 +314,7 @@
 				00C4A1BC27089DBB007EE422 /* NumberFormatter+Percentage.swift */,
 				003A7CE927093E3900ADC953 /* MeasurementFormatter+Degree.swift */,
 				003A7CEB27093E5900ADC953 /* DateFormatter+Default.swift */,
+				00416D1D270BF297006AF8E6 /* Date+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -342,6 +350,7 @@
 				0028459B270AC0320094D03E /* RxSwift */,
 				0028459C270AC0320094D03E /* Alamofire */,
 				0028459E270AC0320094D03E /* EasyPeasy */,
+				0048B2B0270BDD9F00521F14 /* AlamofireNetworkActivityIndicator */,
 			);
 			productName = "Weather Nab";
 			productReference = 002845C0270AC0320094D03E /* Weather Nab UI Test Host.app */;
@@ -366,6 +375,7 @@
 				00C4A1952707F352007EE422 /* RxSwift */,
 				00C4A19A2707F440007EE422 /* Alamofire */,
 				00C4A19D2707F450007EE422 /* EasyPeasy */,
+				0048B2AE270BDD6E00521F14 /* AlamofireNetworkActivityIndicator */,
 			);
 			productName = "Weather Nab";
 			productReference = 00C4A14A2707ED18007EE422 /* Weather Nab.app */;
@@ -447,6 +457,7 @@
 				00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				00C4A1992707F440007EE422 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				00C4A19C2707F44F007EE422 /* XCRemoteSwiftPackageReference "EasyPeasy" */,
+				0048B2AD270BDD6E00521F14 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */,
 			);
 			productRefGroup = 00C4A14B2707ED18007EE422 /* Products */;
 			projectDirPath = "";
@@ -510,6 +521,7 @@
 				002845A3270AC0320094D03E /* DailyForecastViewController.swift in Sources */,
 				002845A4270AC0320094D03E /* SceneCoordinator.swift in Sources */,
 				002845A5270AC0320094D03E /* NumberFormatter+Percentage.swift in Sources */,
+				00416D1F270C1600006AF8E6 /* Date+Utils.swift in Sources */,
 				002845A6270AC0320094D03E /* AppDelegate.swift in Sources */,
 				002845A7270AC0320094D03E /* ContainerTableViewCell.swift in Sources */,
 				002845A8270AC0320094D03E /* OpenWeatherRepository.swift in Sources */,
@@ -533,6 +545,7 @@
 			files = (
 				00C4A1B6270864D4007EE422 /* String+Trimming.swift in Sources */,
 				003A7D01270986C900ADC953 /* Constant.swift in Sources */,
+				00416D1E270BF297006AF8E6 /* Date+Utils.swift in Sources */,
 				00C4A1522707ED18007EE422 /* DailyForecastViewController.swift in Sources */,
 				00C4A1B327083B8A007EE422 /* SceneCoordinator.swift in Sources */,
 				00C4A1BD27089DBB007EE422 /* NumberFormatter+Percentage.swift in Sources */,
@@ -1007,6 +1020,14 @@
 				minimumVersion = 1.9.0;
 			};
 		};
+		0048B2AD270BDD6E00521F14 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireNetworkActivityIndicator";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
 		00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -1068,6 +1089,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00C4A17D2707F195007EE422 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxBlocking;
+		};
+		0048B2AE270BDD6E00521F14 /* AlamofireNetworkActivityIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0048B2AD270BDD6E00521F14 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */;
+			productName = AlamofireNetworkActivityIndicator;
+		};
+		0048B2B0270BDD9F00521F14 /* AlamofireNetworkActivityIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0048B2AD270BDD6E00521F14 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */;
+			productName = AlamofireNetworkActivityIndicator;
 		};
 		00C4A1912707F352007EE422 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

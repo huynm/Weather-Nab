@@ -30,7 +30,6 @@ class MockWeatherRepository: WeatherRepository {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
         self.responses = try! decoder.decode([MockResponse].self, from: data)
-        print(self.responses)
     }
     
     func dailyForecastReport(with params: ForecastParams) -> Observable<DailyForecastReport> {

@@ -9,7 +9,47 @@ import Alamofire
 import Foundation
 import RxSwift
 
+/** Cache response in a day only, because next day will have new forecasts */
+private class OpenWeatherURLCache: URLCache, CachedResponseHandler {
+    private static let dateKey = "date"
+    
+    func dataTask(_ task: URLSessionDataTask, willCacheResponse response: CachedURLResponse, completion: @escaping (CachedURLResponse?) -> Void) {
+        getCachedResponse(for: task) { cachedResponse in
+            guard cachedResponse == nil else {
+                completion(nil)
+                return
+            }
+            completion(CachedURLResponse(
+               response: response.response,
+               data: response.data,
+               userInfo: [Self.dateKey: Date()],
+               storagePolicy: .allowed
+           ))
+        }
+    }
+    
+    override func getCachedResponse(for dataTask: URLSessionDataTask, completionHandler: @escaping (CachedURLResponse?) -> Void) {
+        super.getCachedResponse(for: dataTask) { [unowned self] response in
+            guard let response = response else {
+                completionHandler(nil)
+                return
+            }
+            
+            guard let cachedDate = response.userInfo?[Self.dateKey] as? Date,
+                  cachedDate >= Date.startOfToday else
+            {
+                removeCachedResponse(for: dataTask)
+                completionHandler(nil)
+                return
+            }
+            
+            completionHandler(response)
+        }
+    }
+}
+
 class OpenWeatherRepository: WeatherRepository {
+    private static let cacheCapacity = 10 * 1024 * 1024 // 10MB
     private static let appIDParamName = "appid"
     private static let measurementUnitParamName = "units"
     private static let numberOfDaysParamName = "cnt"
@@ -21,7 +61,16 @@ class OpenWeatherRepository: WeatherRepository {
     
     init(appId: String) {
         self.appId = appId
-        self.session = Alamofire.AF
+        
+        let cache = OpenWeatherURLCache(memoryCapacity: Self.cacheCapacity, diskCapacity: Self.cacheCapacity)
+        let configuration = URLSessionConfiguration.af.default
+        configuration.urlCache = cache
+        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        
+        self.session = Session(
+            configuration: configuration,
+            cachedResponseHandler: cache
+        )
         
         if let urlComponents = URLComponents(string: "https://api.openweathermap.org/data/2.5/") {
             self.baseURLComponents = urlComponents

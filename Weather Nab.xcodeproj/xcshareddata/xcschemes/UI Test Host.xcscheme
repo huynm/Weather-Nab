@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00284597270AC0320094D03E"
-               BuildableName = "Weather Nab copy.app"
+               BuildableName = "Weather Nab UI Test Host.app"
                BlueprintName = "Weather Nab UI Test Host"
                ReferencedContainer = "container:Weather Nab.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00284597270AC0320094D03E"
-            BuildableName = "Weather Nab copy.app"
+            BuildableName = "Weather Nab UI Test Host.app"
             BlueprintName = "Weather Nab UI Test Host"
             ReferencedContainer = "container:Weather Nab.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00284597270AC0320094D03E"
-            BuildableName = "Weather Nab copy.app"
+            BuildableName = "Weather Nab UI Test Host.app"
             BlueprintName = "Weather Nab UI Test Host"
             ReferencedContainer = "container:Weather Nab.xcodeproj">
          </BuildableReference>
