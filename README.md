@@ -39,7 +39,7 @@ Other parts that are not mentioned in the architecture's name:
 
 ## Libraries
 - [RxSwift](https://github.com/ReactiveX/RxSwift): for reactive programming
-- [Alamofire](https://github.com/Alamofire/Alamofire): de facto network library for iOS
+- [Alamofire](https://github.com/Alamofire/Alamofire): de facto standard network library for iOS
 - [AlamofireNetworkActivityIndicator](https://github.com/Alamofire/AlamofireNetworkActivityIndicator): to show/hide the network activity indicator in the status bar when there's a network request excecuting
 - [EasyPeasy](https://github.com/nakiostudio/EasyPeasy): helps with doing auto layout in code. 
 
