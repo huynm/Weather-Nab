@@ -94,7 +94,7 @@
 
 /* Begin PBXFileReference section */
 		002845C0270AC0320094D03E /* Weather Nab UI Test Host.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Nab UI Test Host.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		002845C1270AC0320094D03E /* Weather Nab copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Weather Nab copy-Info.plist"; path = "/Users/huynguyen/Desktop/Weather Nab/Weather Nab copy-Info.plist"; sourceTree = "<absolute>"; };
+		002845C1270AC0320094D03E /* UITestHost-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UITestHost-Info.plist"; path = "/Users/huynguyen/Desktop/Weather Nab/Weather Nab/UITestHost-Info.plist"; sourceTree = "<absolute>"; };
 		002845C7270ACB520094D03E /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		002845C9270B00780094D03E /* MockWeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherRepository.swift; sourceTree = "<group>"; };
 		002845CD270B01690094D03E /* MockWeatherRepositoryResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockWeatherRepositoryResponse.json; sourceTree = "<group>"; };
@@ -202,7 +202,6 @@
 				00C4A16D2707ED1A007EE422 /* Weather NabUITests */,
 				00C4A14B2707ED18007EE422 /* Products */,
 				00C4A18E2707F352007EE422 /* Frameworks */,
-				002845C1270AC0320094D03E /* Weather Nab copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,6 +234,7 @@
 				002845CC270B00E00094D03E /* Resources */,
 				00C4A1582707ED19007EE422 /* LaunchScreen.storyboard */,
 				00C4A15B2707ED19007EE422 /* Info.plist */,
+				002845C1270AC0320094D03E /* UITestHost-Info.plist */,
 			);
 			path = "Weather Nab";
 			sourceTree = "<group>";
@@ -626,7 +626,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Y747J5D67;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Weather Nab copy-Info.plist";
+				INFOPLIST_FILE = "Weather Nab/UITestHost-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -655,7 +655,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Y747J5D67;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Weather Nab copy-Info.plist";
+				INFOPLIST_FILE = "Weather Nab/UITestHost-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
